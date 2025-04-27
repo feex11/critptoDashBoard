@@ -60,6 +60,7 @@ h1 {
   height: 50%;
   width: 85%;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
 .parent > div:hover {
@@ -73,6 +74,50 @@ h1 {
     font-weight: bold;
 }
 
+.container {
+  background-color: #ffffff;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 65%;
+  width: 60%;
+  padding: 30px;
+}
+
+.botoes{
+  width: 90%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 20px; /* Espaçamento entre os botões */
+  margin-top: 20px; /* Espaçamento acima dos botões */
+}
+
+.botoes button{
+  background-color: white;
+  color: #0077b6;
+  border: 1px solid #0077b6;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0077b6;
+  color: white;
+}
+
+.infos{
+  width: 90%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 20px; /* Espaçamento acima dos botões */
+}
 
 
 /* Responsivo: ajusta para telas menores */
