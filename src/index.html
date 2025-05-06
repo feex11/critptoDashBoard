@@ -13,14 +13,22 @@
     <nav class="navBar"><h1>Rastreando as perdas</h1></nav>
     <section>
       <div class="parent">
-        <div id="div1">1</div>
-        <div id="div2">2</div>
-        <div id="div3">3</div>
-        <div id="div4">4</div>
-        <div id="div5">1</div>
-        <div id="div6">2</div>
-        <div id="div7">3</div>
-        <div id="div8">4</div>
+        <div id="div1" data-moeda="bitcoin"></div>
+        <div id="div2" data-moeda="ethereum"></div>
+        <div id="div3" data-moeda="ripple"></div>
+        <div id="div4" data-moeda="sui"></div>
+        <div id="div5" data-moeda="dogecoin"></div>
+        <div id="div6" data-moeda="litecoin"></div>
+        <div id="div7" data-moeda="solana"></div>
+        <div id="div8" data-moeda="near"></div>
+      </div>
+      <div id="fade" class="hide"></div>
+      <div id="modal" class="hide">
+        <div class="modal-header">
+          <button id="close-modal">Fechar</button>
+        </div>
+        <div class="modal-body">
+        </div>
       </div>
     </section>
 
@@ -42,5 +50,6 @@
   
       <div style="width: 90%;">
       -->
+      <script src="../scripts/modal.js"></script>
   </body>
 </html>
