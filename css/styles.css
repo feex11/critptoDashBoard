@@ -42,7 +42,7 @@ h1 {
     auto
   ); /* 2 linhas, ajusta automaticamente o tamanho */
   padding: 40px;
-  margin-top: 40px;
+
   height: 80%;
   width: 100%;
   justify-items: center;
@@ -55,21 +55,12 @@ h1 {
   background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  justify-content: center;
-  height: 50%;
+  padding: 12px;
+  min-height: 50%;
   width: 85%;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
 }
-
-.parent > div > p{
-  margin: 0.2rem;
-  font-size: 1.1rem;
-
-}
-
-
 
 .parent > div:hover {
   transform: translateY(-5px);
@@ -77,9 +68,13 @@ h1 {
 }
 
 p{
-    font-size: 1rem;
+    margin: 5px;
+
+    font-size: 18px;
     color: #0077b6;
     font-weight: bold;
+    overflow-wrap: break-word;
+
 }
 
 .container {
