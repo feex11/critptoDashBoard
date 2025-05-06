@@ -1,12 +1,12 @@
 document.addEventListener("DOMContentLoaded", async function (valorMoeda) {
     const cryptos = [
         { id: 'bitcoin', divId: 'div1' },
-        { id: 'ethereum', divId: 'div2' },
-        { id: 'ripple', divId: 'div3' },
-        { id: 'sui', divId: 'div4' },
-        { id: 'dogecoin', divId: 'div5' },
+        { id: 'solana', divId: 'div2' },
+        { id: 'sui', divId: 'div3' },
+        { id: 'ripple', divId: 'div4' },
+        { id: 'ethereum', divId: 'div5' },
         { id: 'litecoin', divId: 'div6' },
-        { id: 'solana', divId: 'div7' },
+        { id: 'dogecoin', divId: 'div7' },
         { id: 'near', divId: 'div8' },
     ];
 
@@ -23,7 +23,6 @@ document.addEventListener("DOMContentLoaded", async function (valorMoeda) {
             if (!target) return;
 
             const container = document.getElementById(target.divId);
-            container.innerHTML = '';
             
 
             const name = coin.name;
@@ -54,8 +53,8 @@ document.addEventListener("DOMContentLoaded", async function (valorMoeda) {
 
             const horarioUTC = new Date(lastUpdated).toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
 
-            const card = document.createElement('div');
-            card.innerHTML = `
+            
+            container.innerHTML = `
                 <img src="${image}" alt="${name} logo" style="width: 32px; height: 32px;">
                 <h2>${name} (${symbol})</h2>
                 <p style="color:black">Preço atual: $${price}</p>
@@ -67,7 +66,7 @@ document.addEventListener("DOMContentLoaded", async function (valorMoeda) {
                 openModal(coin, name, image, change30dFormatted, changeFormatted, change7dFormatted, change1yFormatted, marketcapFormatted, market_cap_rank, high24h, low24h, ath, atl, horarioUTC);
             });
 
-            container.appendChild(card);
+
         });
 
     } catch (error) {
