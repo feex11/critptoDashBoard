@@ -103,3 +103,25 @@ function openModal(coin, name, image, change30dFormatted, changeFormatted, chang
     `;
 };
 
+async function carregarCriptos() {
+    const url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false';
+
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        const select = document.getElementById("cryptoSelect");
+
+        data.forEach(coin => {
+            const option = document.createElement("option");
+            option.value = coin.id;
+            option.textContent = `${coin.name} (${coin.symbol.toUpperCase()})`;
+            select.appendChild(option);
+        });
+
+    } catch (error) {
+        console.error("Erro ao carregar criptomoedas:", error);
+    }
+}
+
+carregarCriptos();

@@ -10,7 +10,18 @@
     <script src="../scripts/api.js"></script>
   </head>
   <body>
-    <nav class="navBar"><h1>Rastreando as perdas</h1></nav>
+    <nav class="navBar">
+      <div>
+        <select id="cryptoSelect" title="Selecione uma criptomoeda">
+          <option value="">Adicione criptos</option>
+        </select>
+      </div>
+      <div>
+      <h1>Rastreando as perdas</h1>
+    </div>
+      <div><button>darkmode</button></div>
+    </nav>
+
     <section>
       <div class="parent">
         <div id="div1" data-moeda="bitcoin"></div>
@@ -27,29 +38,10 @@
         <div class="modal-header">
           <button id="close-modal">Fechar</button>
         </div>
-        <div class="modal-body">
-        </div>
+        <div class="modal-body"></div>
       </div>
     </section>
 
-    <!-- Deixando o gráfico desabilitado para o momento, problemas com a API
-    <section>
-      <div class="container">
-       Information about Bitcoin 
-      <div class="infos">
-
-        <h2>Bitcoin (BTC)</h2> 
-        <p>Variação: 2,5%</p> 
-      </div>
-     
-      <div class="botoes">
-        <button id="diario">Diário</button> <
-        <button id="mensal">Mensal</button> 
-        <button id="anual">Anual</button> 
-      </div>
-  
-      <div style="width: 90%;">
-      -->
-      <script src="../scripts/modal.js"></script>
+    <script src="../scripts/modal.js"></script>
   </body>
 </html>
