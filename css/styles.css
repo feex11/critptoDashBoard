@@ -26,9 +26,8 @@ section {
 
 
 .navBar h1 {
-  margin: 0;
+  margin-right: 100px;
   font-size: 20px;
-  text-align: center;
 }
 
 
@@ -59,7 +58,8 @@ h1 {
   background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 12px;
+  padding: 10px;
+  padding-bottom: 0px;
   min-height: 50%;
   width: 85%;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
