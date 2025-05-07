@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", async function (valorMoeda) {
             container.innerHTML = `
                 <img src="${image}" alt="${name} logo" style="width: 32px; height: 32px;">
                 <h2>${name} (${symbol})</h2>
-                <p style="color:black">Preço atual: $${price}</p>
+                <p>Preço atual: $${price}</p>
                 <p style="color:${change >= 0 ? 'green' : 'red'}">Variação 24h: ${changeFormatted}%</p>
             `;
 

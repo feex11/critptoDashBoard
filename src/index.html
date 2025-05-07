@@ -7,6 +7,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
     <link rel="stylesheet" href="../css/styles.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
+    
     <script src="../scripts/api.js"></script>
   </head>
   <body>
@@ -19,8 +21,12 @@
       <div>
       <h1>Rastreando as perdas</h1>
     </div>
-      <div><button>darkmode</button></div>
-    </nav>
+    <button id="darkmode" title="Ativar/desativar modo escuro">
+      <span id="divDark">
+        <i class="fa-solid fa-moon"></i>
+      </span>
+    </button>
+  </nav>
 
     <section>
       <div class="parent">
@@ -43,5 +49,6 @@
     </section>
 
     <script src="../scripts/modal.js"></script>
+    <script src="../scripts/darkmode.js"></script>
   </body>
 </html>

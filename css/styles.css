@@ -27,7 +27,6 @@ section {
 
 .navBar h1 {
   margin-right: 100px;
-  font-size: 20px;
 }
 
 
@@ -75,7 +74,7 @@ p{
     margin: 5px;
 
     font-size: 18px;
-    color: #0077b6;
+    color: black;
     font-weight: bold;
     overflow-wrap: break-word;
 
@@ -102,20 +101,20 @@ p{
   margin-top: 20px; /* Espaçamento acima dos botões */
 }
 
-.botoes button{
-  background-color: white;
-  color: #0077b6;
-  border: 1px solid #0077b6;
-  border-radius: 5px;
+button{
   padding: 10px 20px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
   background-color: #0077b6;
   color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+button:hover{
+  transform: scale(1.1);
+  scale: 1.1;
 }
 
 .infos{
@@ -217,7 +216,7 @@ color: black;
   width: 200px;
   padding: 10px;
   background-color: #0077b6;
-  border: 1px solid white;
+  border: 2px solid white;
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
@@ -228,4 +227,76 @@ option{
   color: #0077b6;
   padding: 10px;
   font-size: 16px;
+}
+
+i{
+  font-size: 28px;
+  color: #1e1e1e;
+  cursor: pointer;
+}
+
+
+#darkmode{
+  background-color: none;
+}
+
+
+/* Dark mode */
+
+
+body.dark-mode {
+  background-color: #121212;
+}
+
+body.dark-mode section {
+  background-color: #121212;
+}
+
+body.dark-mode .navBar {
+  background-color: #1e1e1e;
+  color: #f5f5f5;
+}
+
+body.dark-mode .parent > div {
+  background-color: #1e1e1e;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode #cryptoSelect{
+  background-color: #1e1e1e;
+  color: white;
+}
+
+body.dark-mode option{
+  background-color: #2a2a2a;
+  color: white;
+}
+
+body.dark-mode #modal {
+  background-color: #2a2a2a;
+  color: white;
+}
+
+body.dark-mode #modal p {
+  color: white;
+}
+
+
+body.dark-mode .parent > div > p {
+  color: white;
+}
+
+body.dark-mode #modal-header {
+  color: white;
+}
+
+body.dark-mode h2 {
+  color: white;
+}
+body.dark-mode i{
+  color: white;
+}
+
+body.dark-mode button{
+  background-color: #1e1e1e;
 }
