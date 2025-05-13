@@ -11,8 +11,12 @@ const openModalButtons = document.querySelectorAll(".parent > div");
 openModalButtons.forEach((div) => {
 
   div.addEventListener("click", () => {
-    toggleModal();
-
+    if (event.target.closest(".selecionarPeriodo")) {
+      // Se o clique foi no select, não faz nada
+      return;
+    } else{
+     toggleModal();
+}
   });
 });
 

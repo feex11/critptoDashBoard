@@ -53,14 +53,68 @@ document.addEventListener("DOMContentLoaded", async function (valorMoeda) {
 
             const horarioUTC = new Date(lastUpdated).toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
 
-            
+
+
             container.innerHTML = `
                 <img src="${image}" alt="${name} logo" style="width: 32px; height: 32px;">
+                <select class="selecionarPeriodo">
+                    <option value="24h">24h</option>
+                    <option value="7d">7d</option>
+                    <option value="30d">30d</option>
+                    <option value="1y">1a</option>
+                </select>
                 <h2>${name} (${symbol})</h2>
                 <p>Preço atual: $${price}</p>
                 <p style="color:${change >= 0 ? 'green' : 'red'}">Variação 24h: ${changeFormatted}%</p>
             `;
 
+function renderInfo(periodoSelecionado) {
+    let variacaoTexto = '';
+    let variacaoValor = '';
+
+    switch (periodoSelecionado) {
+        case "24h":
+            variacaoTexto = 'Variação 24h';
+            variacaoValor = changeFormatted;
+            break;
+        case "7d":
+            variacaoTexto = 'Variação 7d';
+            variacaoValor = change7dFormatted;
+            break;
+        case "30d":
+            variacaoTexto = 'Variação 30d';
+            variacaoValor = change30dFormatted;
+            break;
+        case "1y":
+            variacaoTexto = 'Variação 1 ano';
+            variacaoValor = change1yFormatted;
+            break;
+    }
+
+    container.innerHTML = `
+        <img src="${image}" alt="${name} logo" style="width: 32px; height: 32px;">
+        <select class="selecionarPeriodo">
+            <option value="24h" ${periodoSelecionado === "24h" ? "selected" : ""}>24h</option>
+            <option value="7d" ${periodoSelecionado === "7d" ? "selected" : ""}>7d</option>
+            <option value="30d" ${periodoSelecionado === "30d" ? "selected" : ""}>30d</option>
+            <option value="1y" ${periodoSelecionado === "1y" ? "selected" : ""}>1a</option>
+        </select>
+        <h2>${name} (${symbol})</h2>
+        <p>Preço atual: $${price}</p>
+        <p style="color:${parseFloat(variacaoValor) >= 0 ? 'green' : 'red'}">${variacaoTexto}: ${variacaoValor}%</p>
+    `;
+
+    // Reatribui o evento ao novo select
+    container.querySelector(".selecionarPeriodo").addEventListener("change", function (e) {
+        renderInfo(e.target.value);
+    });
+}
+
+// Render inicial
+renderInfo("24h");
+
+
+        
             
             container.addEventListener("click", () => {
                 openModal(coin, name, image, change30dFormatted, changeFormatted, change7dFormatted, change1yFormatted, marketcapFormatted, market_cap_rank, high24h, low24h, ath, atl, horarioUTC);
