@@ -73,6 +73,7 @@ h1 {
 }
 
 .selecionarPeriodo{
+  font-weight: bold;
   color: black;
   border: none;
   position: absolute;
@@ -117,7 +118,7 @@ p{
   margin-top: 20px; /* Espaçamento acima dos botões */
 }
 
-button{
+#darkmode{
   padding: 10px 20px;
   background-color: #0077b6;
   color: white;
@@ -128,9 +129,25 @@ button{
   transition: transform 0.3s ease;
 }
 
-button:hover{
+#darkmode:hover{
   transform: scale(1.1);
   scale: 1.1;
+}
+
+#btnAdd{
+  margin-left: 10px;
+  padding: 10px;
+  background-color: #0077b6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 26px;
+  cursor: pointer;
+  transition:  transform 0.2s ease;
+}
+
+#btnAdd:active{
+  transform: scale(0.5);
 }
 
 .infos{
@@ -138,7 +155,7 @@ button:hover{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 20px; /* Espaçamento acima dos botões */
+  margin-top: 20px; 
 }
 
 
@@ -232,7 +249,7 @@ color: black;
   width: 200px;
   padding: 10px;
   background-color: #0077b6;
-  border: 2px solid white;
+  border: none;
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
@@ -247,7 +264,7 @@ option{
 
 i{
   font-size: 28px;
-  color: #1e1e1e;
+  color: white;
   cursor: pointer;
 }
 
@@ -317,6 +334,10 @@ body.dark-mode i{
   color: white;
 }
 
-body.dark-mode button{
+body.dark-mode #darkmode{
+  background-color: #1e1e1e;
+}
+
+body.dark-mode #btnAdd{
   background-color: #1e1e1e;
 }
