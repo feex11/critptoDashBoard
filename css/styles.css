@@ -1,344 +1,451 @@
-body {
+/* styles.css Modernizado */
+
+/* 1. Reset Básico e Variáveis Globais */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
-  overflow-x: hidden; /* Evita rolagem horizontal */
-  background-color: #f4f4f4;
+}
+
+:root {
+  --font-primary: 'Inter', sans-serif;
+
+  /* Tema Claro (Padrão) */
+  --bg-color-light: #f4f6f8; /* Fundo principal mais suave */
+  --card-bg-light: #ffffff;
+  --text-color-light: #333333; /* Texto principal */
+  --text-secondary-light: #555555; /* Texto secundário */
+  --border-color-light: #e0e0e0; /* Bordas sutis */
+  --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08); /* Sombra mais suave */
+  --primary-accent-light: #0077b6; /* Cor de destaque original */
+  --primary-accent-hover-light: #005f94;
+  --button-text-light: #ffffff;
+  --input-bg-light: #ffffff;
+  --input-border-light: #cccccc;
+
+  /* Tema Escuro */
+  --bg-color-dark: #1a1d24; /* Fundo escuro sofisticado */
+  --card-bg-dark: #252a33; /* Cards no modo escuro */
+  --text-color-dark: #e0e0e0;
+  --text-secondary-dark: #b0b0b0;
+  --border-color-dark: #3a3f4a;
+  --shadow-dark: 0 4px 15px rgba(0, 0, 0, 0.2);
+  --primary-accent-dark: #25a6e9; /* Azul mais vibrante para modo escuro */
+  --primary-accent-hover-dark: #1e88c7;
+  --button-text-dark: #1a1d24; /* Texto escuro em botões claros no modo escuro */
+  --input-bg-dark: #2f3542;
+  --input-border-dark: #4a4f5a;
+
+  /* Variáveis dinâmicas baseadas no tema */
+  --bg-color: var(--bg-color-light);
+  --card-bg-color: var(--card-bg-light);
+  --text-color: var(--text-color-light);
+  --text-secondary-color: var(--text-secondary-light);
+  --border-color: var(--border-color-light);
+  --shadow-color: var(--shadow-light);
+  --primary-accent: var(--primary-accent-light);
+  --primary-accent-hover: var(--primary-accent-hover-light);
+  --button-text-color: var(--button-text-light);
+  --input-bg-color: var(--input-bg-light);
+  --input-border-color: var(--input-border-light);
+
+  --border-radius-sm: 0.375rem; /* 6px */
+  --border-radius-md: 0.5rem;   /* 8px */
+  --border-radius-lg: 0.75rem;  /* 12px */
+  --transition-speed: 0.2s;
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+  overflow-x: hidden;
 }
 
 section {
-  height: 900px; /* Cada section ocupa 100% da altura da tela */
+  /* A altura fixa pode ser problemática. Considere min-height: calc(100vh - altura_navbar); */
+  /* Mantendo a altura original conforme solicitado */
+  height: 900px; 
   display: flex;
-  background-color: #f4f4f4;
-  justify-content: center;
+  flex-direction: column; /* Para centralizar o #parent */
+  align-items: center; /* Centraliza #parent horizontalmente */
+  padding-top: 2rem; /* Espaço acima do grid de cards */
+  background-color: var(--bg-color); /* Garante que a section também mude de cor */
+  transition: background-color var(--transition-speed) ease;
 }
 
+/* 2. Barra de Navegação */
 .navBar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 40px;
-  background-color: #0077b6;
-  color: white;
-  height: 60px;
+  padding: 0.75rem 2rem; /* Padding moderno */
+  background-color: var(--card-bg-color); /* Navbar com fundo de card para consistência */
+  color: var(--text-color);
+  height: 70px; /* Altura ligeiramente aumentada */
+  box-shadow: var(--shadow-color);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky; /* Navbar fixa no topo */
+  top: 0;
+  z-index: 1000;
+  transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
 }
 
+.navBar > div:first-child { /* Controles à esquerda */
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
 
 .navBar h1 {
-  margin-right: 100px;
+  color: var(--primary-accent); /* Título com cor de destaque */
+  font-size: 1.5rem; /* 24px */
+  font-weight: 600;
+  margin: 0; /* Removido margin-right original */
+}
+
+#cryptoSelect {
+  padding: 0.6rem 0.8rem;
+  background-color: var(--input-bg-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  font-size: 0.9rem; /* 14.4px */
+  cursor: pointer;
+  transition: border-color var(--transition-speed) ease, background-color var(--transition-speed) ease;
+  width: 250px; 
+}
+
+#cryptoSelect:hover {
+  border-color: var(--primary-accent);
+}
+
+#cryptoSelect option {
+  background-color: var(--card-bg-color); /* Fundo das opções igual ao card */
+  color: var(--text-color);
+}
+
+/* Estilo para botões genéricos e específicos */
+button {
+  cursor: pointer;
+  transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+  font-family: var(--font-primary);
+  border-radius: var(--border-radius-md);
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid transparent;
+}
+
+#btnAdd, #darkmode, #close-modal {
+  background-color: var(--primary-accent);
+  color: var(--button-text-color);
+  border: none;
+}
+
+#btnAdd:hover, #darkmode:hover, #close-modal:hover {
+  background-color: var(--primary-accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#btnAdd:active, #darkmode:active, #close-modal:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+#btnAdd {
+  font-size: 1.25rem; /* Tamanho do "+" */
+  padding: 0.5rem 0.8rem; /* Ajuste para o "+" */
+  line-height: 1; /* Para centralizar o "+" verticalmente */
+}
+
+#darkmode {
+  background-color: transparent; /* Botão de tema sem fundo por padrão */
+  color: var(--text-secondary-color);
+  padding: 0.5rem;
+  border: 1px solid var(--border-color);
+}
+#darkmode:hover {
+  background-color: var(--input-bg-color); /* Leve fundo no hover */
+  color: var(--primary-accent);
+  border-color: var(--primary-accent);
+  transform: none; /* Sem translateY para este botão */
+  box-shadow: none;
+}
+#darkmode i {
+  font-size: 1.25rem; /* 20px */
+  color: inherit; /* Herda a cor do botão */
+  display: block; /* Para evitar espaçamento extra */
 }
 
 
-h1 {
-  color: white;
-  font-size: 24px;
-  margin: 0;
-}
-
+/* 3. Grid de Cards */
 #parent {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 2 colunas */
-  grid-template-rows: repeat(
-    2,
-    auto
-  ); /* 2 linhas, ajusta automaticamente o tamanho */
-  margin-top: 80px;
-  padding-right: 30px;
-  padding-left: 30px;
-  gap: 50px; /* Espaçamento entre os itens */
-  height: 20%;
-  width: 90%;
-  justify-items: center;
-  align-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsivo */
+  gap: 1.5rem; /* Espaçamento moderno */
+  padding: 0 1.5rem; /* Padding lateral */
+  width: 100%;
+  max-width: 1400px; /* Largura máxima para o conteúdo */
+  /* Removido height, margin-top, padding-right/left originais para layout mais flexível */
 }
 
-#parent > div {
+#parent > div { /* Estilo dos cards individuais */
   position: relative;
   display: flex;
   flex-direction: column;
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-  padding-bottom: 0px;
-  height: 100%;
-  width: 100%;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
+  background-color: var(--card-bg-color);
+  border-radius: var(--border-radius-lg); /* Bordas mais arredondadas */
+  box-shadow: var(--shadow-color);
+  padding: 1.5rem; /* Padding interno generoso */
+  min-height: 300px; /* Altura mínima para consistência */
+  transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease, background-color var(--transition-speed) ease;
+  cursor: pointer; /* Mantido do original */
 }
-
 
 #parent > div:hover {
   transform: translateY(-5px);
-  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12); /* Sombra mais pronunciada no hover */
 }
 
-.selecionarPeriodo{
-  font-weight: bold;
-  color: black;
-  border: none;
-  position: absolute;
-  top: 0;
-  right: 10px;
-  width: 3rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-  text-align: center;
+/* Estilos para conteúdo dentro dos cards */
+#parent > div p { /* Parágrafos dentro dos cards */
+  margin-bottom: 0.5rem;
+  font-size: 1rem; /* 16px */
+  color: var(--text-color);
+  font-weight: 500; /* Um pouco mais de peso */
+  overflow-wrap: break-word;
 }
 
-p{
-    margin: 5px;
-
-    font-size: 18px;
-    color: black;
-    font-weight: bold;
-    overflow-wrap: break-word;
-
-}
-
-.container {
-  background-color: #ffffff;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 65%;
-  width: 60%;
-  padding: 30px;
-}
-
-.botoes{
-  width: 90%;
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  gap: 20px; /* Espaçamento entre os botões */
-  margin-top: 20px; /* Espaçamento acima dos botões */
-}
-
-#darkmode{
-  padding: 10px 20px;
-  background-color: #0077b6;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-#darkmode:hover{
-  transform: scale(1.1);
-  scale: 1.1;
-}
-
-#btnAdd{
-  margin-left: 10px;
-  padding: 10px;
-  background-color: #0077b6;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 26px;
-  cursor: pointer;
-  transition:  transform 0.2s ease;
-}
-
-#btnAdd:active{
-  transform: scale(0.5);
-}
-
-.infos{
-  width: 90%;
+#parent > div .infos { /* Div de informações dentro do card */
+  width: 100%; /* Ocupa toda a largura */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 20px; 
+  margin-top: auto; /* Empurra para o final do card */
+  padding-top: 1rem; /* Espaço acima das infos */
+  border-top: 1px solid var(--border-color); /* Linha separadora */
+}
+
+#parent > div .infos p {
+  font-size: 0.9rem;
+  color: var(--text-secondary-color);
+  margin-bottom: 0;
+}
+
+/* Estilo para o seletor de período, se existir (não visível no HTML fornecido) */
+.selecionarPeriodo {
+  font-weight: 600;
+  color: var(--primary-accent);
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.5rem;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+}
+.selecionarPeriodo:hover {
+  background-color: var(--input-bg-color);
+}
+
+#removerDiv{
+  color: red;
+  
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  padding: 0.5rem;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  background-color: transparent;
+}
+
+#removerDiv:hover {
+  background-color: var(--input-bg-color);
+  color: var(--primary-accent);
+  transform: none;
+  box-shadow: none;
 }
 
 
-/* Responsivo: ajusta para telas menores */
-@media (max-width: 900px) {
-  #parent {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 500px) {
-  #parent {
-    grid-template-columns: 1fr;
-  }
-}
-
-#fade, 
-#modal{
-  transition: 0.5s;
-  opacity: 1;
-  pointer-events: all;
-}
-
-#fade{
+/* 4. Modal */
+#fade {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  justify-content: center;
-  align-items: center;
-  z-index: 5;
+  background-color: rgba(0, 0, 0, 0.6); /* Overlay mais escuro */
+  z-index: 1040; /* Abaixo do modal */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-speed) ease;
 }
 
 #modal {
   position: fixed;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  width: 500px;
-  max-width: 90%;
-  max-height: 90%;
-  padding: 1.2rem;
-  border-radius: 0.5rem;
-  z-index: 6;
+  transform: translate(-50%, -50%) scale(0.95); /* Efeito de entrada */
+  background-color: var(--card-bg-color);
+  color: var(--text-color);
+  width: 90%;
+  max-width: 550px; /* Largura máxima do modal */
+  padding: 0; /* Padding será no header/body */
+  border-radius: var(--border-radius-lg);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  z-index: 1050;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-speed) ease, transform var(--transition-speed) ease;
+  overflow: hidden; /* Para conter o header/body com border-radius */
 }
 
-.modal-header{
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid #ccc;
-  margin-bottom: 1rem;
-  padding-bottom: 1rem;
-}
-
-.modal-body p{
-  margin-bottom: 1rem;
-  font-size: 1.2rem;
-  color: #333;
-}
-
-#close-modal{
-  cursor: pointer;
-  padding: .6rem 1.2rem;
-  background-color: #888;
-  color: #FFF;
-  border: none;
-  border-radius: .25rem;
-  font-size: 1rem;
-}
-
-
-#modal.hide,
-#fade.hide{
+#fade.hide, #modal.hide {
   opacity: 0;
   pointer-events: none;
 }
 
-#modal.hide{
-  top: 0;
+#fade:not(.hide), #modal:not(.hide) {
+  opacity: 1;
+  pointer-events: all;
+}
+#modal:not(.hide) {
+    transform: translate(-50%, -50%) scale(1);
 }
 
-#modal p{
-color: black;
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-color);
 }
 
-#cryptoSelect{
-  color: white;
-  width: 200px;
-  padding: 10px;
-  background-color: #0077b6;
+.modal-header h2 { /* Se você adicionar um título ao modal */
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+#close-modal {
+  /* Estilo já definido acima, mas pode precisar de ajustes específicos */
+  padding: 0.5rem 0.8rem;
+  background-color: transparent;
+  color: var(--text-secondary-color);
   border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
+}
+#close-modal:hover {
+  background-color: var(--input-bg-color);
+  color: var(--primary-accent);
+  transform: none;
+  box-shadow: none;
 }
 
-option{
-  background-color: white;
-  color: #0077b6;
-  padding: 10px;
-  font-size: 16px;
+.modal-body {
+  padding: 1.5rem;
+  max-height: 70vh;
+  overflow-y: auto;
 }
 
-i{
-  font-size: 28px;
-  color: white;
-  cursor: pointer;
+.modal-body p {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: var(--text-color);
+  line-height: 1.7;
 }
 
-
-#darkmode{
-  background-color: none;
-}
-
-
-/* Dark mode */
-
-
+/* 5. Estilos para Modo Escuro (aplicados via JS na tag body) */
 body.dark-mode {
-  background-color: #121212;
+  --bg-color: var(--bg-color-dark);
+  --card-bg-color: var(--card-bg-dark);
+  --text-color: var(--text-color-dark);
+  --text-secondary-color: var(--text-secondary-dark);
+  --border-color: var(--border-color-dark);
+  --shadow-color: var(--shadow-dark);
+  --primary-accent: var(--primary-accent-dark);
+  --primary-accent-hover: var(--primary-accent-hover-dark);
+  /* Para botões no modo escuro, podemos inverter o texto/fundo ou usar cores específicas */
+  --button-text-color: var(--button-text-dark); /* Texto escuro em botões claros */
+  --input-bg-color: var(--input-bg-dark);
+  --input-border-color: var(--input-border-dark);
 }
 
-body.dark-mode section {
-  background-color: #121212;
+/* Ajustes específicos para botões no modo escuro se necessário */
+body.dark-mode #btnAdd,
+body.dark-mode #close-modal {
+  /* No modo escuro, o botão de fechar e add podem ter fundo de destaque e texto claro */
+   background-color: var(--primary-accent-dark);
+   color: var(--button-text-light); /* Texto claro em botões de destaque */
 }
-
-body.dark-mode .navBar {
-  background-color: #1e1e1e;
-  color: #f5f5f5;
-}
-
-body.dark-mode #parent > div {
-  background-color: #1e1e1e;
-}
-
-body.dark-mode .selecionarPeriodo{
-  background-color: #1e1e1e;
-  color: white;
-}
-
-body.dark-mode #cryptoSelect{
-  background-color: #1e1e1e;
-  color: white;
-}
-
-body.dark-mode option{
-  background-color: #2a2a2a;
-  color: white;
-}
-
-body.dark-mode #modal {
-  background-color: #2a2a2a;
-  color: white;
-}
-
-body.dark-mode #modal p {
-  color: white;
+body.dark-mode #btnAdd:hover,
+body.dark-mode #close-modal:hover {
+   background-color: var(--primary-accent-hover-dark);
 }
 
 
-body.dark-mode #parent > div > p {
-  color: white;
+/* 6. Responsividade */
+@media (max-width: 768px) {
+  .navBar {
+    padding: 0.75rem 1rem;
+    height: auto; /* Altura automática para acomodar quebra de linha */
+    flex-direction: column; /* Empilha os itens da navbar */
+    gap: 0.5rem; /* Espaço entre os itens empilhados */
+  }
+  .navBar > div:nth-child(2) { /* Título */
+    order: -1; /* Move o título para cima */
+    margin-bottom: 0.5rem;
+  }
+  .navBar h1 {
+    font-size: 1.25rem;
+  }
+  #parent {
+    padding: 0 1rem;
+    gap: 1rem;
+  }
+  #parent > div {
+    padding: 1rem;
+    min-height: 250px;
+  }
+  section {
+    padding-top: 1rem;
+    height: auto; /* Altura automática para conteúdo */
+    min-height: calc(100vh - 120px); /* Ajuste para navbar empilhada */
+  }
 }
 
-body.dark-mode #modal-header {
-  color: white;
+@media (max-width: 480px) {
+  #cryptoSelect {
+    min-width: 150px;
+    font-size: 0.85rem;
+  }
+  button, #btnAdd, #darkmode, #close-modal {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.85rem;
+  }
+  #btnAdd {
+    font-size: 1.1rem;
+  }
+  .modal-header, .modal-body {
+    padding: 1rem;
+  }
+  .modal-header h2 {
+    font-size: 1.1rem;
+  }
 }
 
-body.dark-mode h2 {
-  color: white;
-}
-body.dark-mode i{
-  color: white;
-}
-
-body.dark-mode #darkmode{
-  background-color: #1e1e1e;
-}
-
-body.dark-mode #btnAdd{
-  background-color: #1e1e1e;
+/* Estilos para placeholders de gráficos, se você usar */
+canvas {
+  max-width: 100%;
+  height: auto;
+  margin-top: 1rem; /* Espaço acima do gráfico no card */
 }

@@ -5,7 +5,6 @@ const cryptos = [
 
 async function carregar(){
 
-  console.log("carregando dados...");
   const ids = cryptos.map((c) => c.id).join(",");
   const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${ids}&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=30d,7d,1y`;
 
@@ -113,6 +112,7 @@ async function carregar(){
         <p style="color:${
           parseFloat(variacaoValor) >= 0 ? "green" : "red"
         }">${variacaoTexto}: ${variacaoValor}%</p>
+        <button id="removerDiv"><i class="fa-solid fa-trash"></i></button>
     `;
 
         // Reatribui o evento ao novo select
@@ -123,27 +123,34 @@ async function carregar(){
           });
       }
 
-      // Render inicial
-      renderInfo("24h");
+// ... (código anterior dentro do loop) ...
+renderInfo("24h"); // Render inicial do card
 
-      container.addEventListener("click", () => {
-        openModal(
-          coin,
-          name,
-          image,
-          change30dFormatted,
-          changeFormatted,
-          change7dFormatted,
-          change1yFormatted,
-          marketcapFormatted,
-          market_cap_rank,
-          high24h,
-          low24h,
-          ath,
-          atl,
-          horarioUTC
-        );
-      });
+container.addEventListener("click", (event) => { // Adicione 'event' como parâmetro
+    // Verifica se o clique foi no seletor de período dentro do card
+    if (event.target.closest(".selecionarPeriodo")) {
+        return; // Não faz nada se o clique foi no select
+    }
+
+    // Se não foi no select, popula o modal e o torna visível
+    openModal( // Esta função popula o conteúdo do modal
+        coin,
+        name,
+        image,
+        change30dFormatted,
+        changeFormatted,
+        change7dFormatted,
+        change1yFormatted,
+        marketcapFormatted,
+        market_cap_rank,
+        high24h,
+        low24h,
+        ath,
+        atl,
+        horarioUTC
+    );
+    toggleModal(); // Esta função torna o modal e o fade visíveis
+});
     });
   } catch (error) {
     console.error("Erro ao buscar dados:", error);
@@ -217,7 +224,6 @@ function criarDiv(selectedValue) {
     newDiv.id = divId;
     parent.appendChild(newDiv);
 
-    console.log(cryptos);
   } else {
     alert("Criptomoeda já adicionada!");
   }
