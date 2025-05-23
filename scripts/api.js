@@ -1,15 +1,11 @@
-document.addEventListener("DOMContentLoaded", async function (valorMoeda) {
-  const cryptos = [
-    { id: "bitcoin", divId: "div1" },
-    { id: "solana", divId: "div2" },
-    { id: "sui", divId: "div3" },
-    { id: "ripple", divId: "div4" },
-    { id: "ethereum", divId: "div5" },
-    { id: "litecoin", divId: "div6" },
-    { id: "dogecoin", divId: "div7" },
-    { id: "near", divId: "div8" },
-  ];
+const cryptos = [
+  { id: "bitcoin", divId: "div1" },
 
+];
+
+async function carregar(){
+
+  console.log("carregando dados...");
   const ids = cryptos.map((c) => c.id).join(",");
   const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${ids}&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=30d,7d,1y`;
 
@@ -152,7 +148,9 @@ document.addEventListener("DOMContentLoaded", async function (valorMoeda) {
   } catch (error) {
     console.error("Erro ao buscar dados:", error);
   }
-});
+
+}
+
 
 function openModal(
   coin,
@@ -206,6 +204,43 @@ function openModal(
     `;
 }
 
+function criarDiv(selectedValue) {
+  if (!cryptos.some(c => c.id === selectedValue)) {
+    const divId = `div${cryptos.length + 1}`;
+
+    // Adiciona ao array
+    cryptos.push({ id: selectedValue, divId: divId });
+
+    // Cria e adiciona a div
+    const parent = document.getElementById("parent");
+    const newDiv = document.createElement("div");
+    newDiv.id = divId;
+    parent.appendChild(newDiv);
+
+    console.log(cryptos);
+  } else {
+    alert("Criptomoeda já adicionada!");
+  }
+}
+
+document.addEventListener("DOMContentLoaded", async function () {
+  // Carrega criptomoedas no select
+  await carregarCriptos();
+
+  // Adiciona evento ao botão de adicionar
+  const botaoAdd = document.getElementById("btnAdd");
+  botaoAdd.addEventListener("click", function () {
+    const select = document.getElementById("cryptoSelect");
+    const selectedOption = select.options[select.selectedIndex];
+    const selectedValue = selectedOption.value;
+    criarDiv(selectedValue);
+    carregar(); // Atualiza os dados
+  });
+
+  // Carrega os dados iniciais
+  carregar();
+});
+
 async function carregarCriptos() {
   const url =
     "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false";
@@ -227,4 +262,3 @@ async function carregarCriptos() {
   }
 }
 
-carregarCriptos();

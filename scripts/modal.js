@@ -6,7 +6,7 @@ const toggleModal = () => {
   [modal, fade].forEach((el) => el.classList.toggle("hide"));
 };
 
-const openModalButtons = document.querySelectorAll(".parent > div");
+const openModalButtons = document.querySelectorAll("#parent > div");
 
 openModalButtons.forEach((div) => {
 
